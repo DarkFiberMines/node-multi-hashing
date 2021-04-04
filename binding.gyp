@@ -9,7 +9,7 @@
                 "boolberry.cc",
                 "c11.c",
                 "cryptonight.c",
-				"cryptonight_fast.c",
+		"cryptonight_fast.c",
                 "fresh.c",
                 "fugue.c",
                 "groestl.c",
@@ -63,6 +63,9 @@
                 "crypto/aesb.c",
                 "crypto/wild_keccak.cpp",
                 "neoscrypt.c",
+		"yescrypt/sha256_Y.c",
+                "yescrypt/yescrypt-best.c",
+                "yescrypt/yescryptcommon.c",    
             ],
             "include_dirs": [
                 "crypto",
