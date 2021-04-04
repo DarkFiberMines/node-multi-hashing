@@ -30,7 +30,6 @@
                 "x15.c",
                 "x16r.c",
                 "x16rv2.c",
-		"x21s_module.c",
 		"verthashmodule.c",
                 "sha3/sph_hefty1.c",
                 "sha3/sph_fugue.c",
