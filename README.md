@@ -1,90 +1,45 @@
-## This repo is looking for maintainers! Please reach out if interested.
+# Rito Core
+https://ritocoin.org/
 
---------
+# x21s_hash
+Source code for the x21s hash function. You can use this with python (using the instructions below) or anywhere else you need to incorporate x21s. For nomp, simply add this to your multi-hashing module and edit the bindings and rebuild.
 
-
-
-node-multi-hashing
-===============
-
-[![Build Status](https://travis-ci.org/zone117x/node-multi-hashing.png?branch=master)](https://travis-ci.org/zone117x/node-multi-hashing)
-
-[![NPM](https://nodei.co/npm/multi-hashing.png?downloads=true&stars=true)](https://nodei.co/npm/multi-hashing/)
-
-Cryptocurrency hashing functions for node.js.
-
-
-Algorithms
-----------
-* quark
-* x11
-* x13
-* x16r
-* x16rv2
-* nist5
-* scrypt
-* scryptn
-* scryptjane
-* keccak
-* bcrypt
-* skein
-* groestl
-* blake
-* fugue
-* qubit
-* hefty1
-* shavite3
-* cryptonight
-* boolberry
-* sha256d
-* lbry
-
-Usage
------
-
-Install
-
-```bash
-npm install multi-hashing
-```
-
-So far this native Node.js addon can do the following hashing algos
-
-```javascript
-var multiHashing = require('multi-hashing');
-
-var algorithms = ['quark', 'x11', 'scrypt', 'scryptn', 'scryptjane', 'keccak', 'bcrypt', 'skein', 'blake'];
-
-var data = new Buffer("7000000001e980924e4e1109230383e66d62945ff8e749903bea4336755c00000000000051928aff1b4d72416173a8c3948159a09a73ac3bb556aa6bfbcad1a85da7f4c1d13350531e24031b939b9e2b", "hex");
-
-var hashedData = algorithms.map(function(algo){
-    if (algo === 'scryptjane'){
-        //scryptjane needs block.nTime and nChainStartTime (found in coin source)
-        var yaCoinChainStartTime = 1367991200;
-        var nTime = Math.round(Date.now() / 1000);
-        return multiHashing[algo](data, nTime, yaCoinChainStartTime);
-    }
-    else{
-        return multiHashing[algo](data);
-    }
-});
-
-
-console.log(hashedData);
-//<SlowBuffer 0b de 16 ef 2d 92 e4 35 65 c6 6c d8 92 d9 66 b4 3d 65 ..... >
-
+## Prerequisites for python:
 
 ```
+sudo apt-get install python-dev
+```
 
-Credits
--------
-* [NSA](http://www.nsa.gov/) and [NIST](http://www.nist.gov/) for creation or sponsoring creation of SHA2 and SHA3 algos
-* [Keccak](http://en.wikipedia.org/wiki/Keccak) - Guido Bertoni, Joan Daemen, Michaël Peeters, and Gilles Van Assche
-* [Skein](http://en.wikipedia.org/wiki/Skein_(hash_function)) - Bruce Schneier, Stefan Lucks, Niels Ferguson, Doug Whiting, Mihir Bellare, Tadayoshi Kohno, Jon Callas and Jesse Walker.
-* [BLAKE](http://en.wikipedia.org/wiki/BLAKE_(hash_function)) - Jean-Philippe Aumasson, Luca Henzen, Willi Meier, and Raphael C.-W. Phan
-* [Grøstl](http://en.wikipedia.org/wiki/Gr%C3%B8stl) - Praveen Gauravaram, Lars Knudsen, Krystian Matusiewicz, Florian Mendel, Christian Rechberger, Martin Schläffer, and Søren S. Thomsen
-* [JH](http://en.wikipedia.org/wiki/JH_(hash_function)) - Hongjun Wu
-* [Fugue](http://en.wikipedia.org/wiki/Fugue_(hash_function)) - Shai Halevi, William E. Hall, and Charanjit S. Jutla
-* [scrypt](http://en.wikipedia.org/wiki/Scrypt) - Colin Percival
-* [bcrypt](http://en.wikipedia.org/wiki/Bcrypt) - Niels Provos and David Mazières
-* [X11](http://www.darkcoin.io/), [Hefty1](http://heavycoin.github.io/about.html), [Quark](http://www.qrk.cc/) creators (they just mixed together a bunch of the above algos)
+## Installation for python:
+
+To install this module, clone this repository and run:
+
+```
+python setup.py install
+```
+
+You can verify the installation by running:
+
+```
+python test.py
+```
+
+## Credits
+
+  * Ravencoin for X16R
+  * Luke Pighetti for X16S
+  * SUQA for X22i
+  * Trevali for X21S
+  * kryptoshi for the idea of merging the ideas of X22i with X16S.
+
+## What is x21s_hash ?
+The cornerstone feature of our coin at launch is the new X21S algorithm, inspired by X22i and X16S. The hashing algorithm begins with 16 algorithms shuffled and hashed in the manner prescribed by X16S, followed by 5 additional hashing algorithms: haval256, tiger, lyra2, gost512, and sha256. The inclusion of lyra2 brings numerous advantages, making parallelization of the algorithm practically impossible, with each step relying on the previous step having already been computed. It is a “friendly” algorithm that makes GPUs produce much less heat and uses less electricity during mining.
+
+
+## What is ritocoin ?
+
+Ritocoin is a blockchain software development project designed to experiment with alternative and additional concepts with ideas based on those begun by the Ravencoin project.
+
+Ritocoin launches with the spirit of community, cypherpunk culture and hacker ethics. Ritocoin is a fork of the Ravencoin codebase, which is an experimental blockchain and platform optimized for transferring assets, such as tokens, from one holder to another. The launch of Ritocoin offers several improvements to Ravencoin. First, a change in the proof-of-work mining algorithm, second, a commitment to keeping mining accessible to casual hobbyists, third, an addition for in wallet interest feature, and finally, an emphasis on the community-driven development of user friendly features and add-on utilities. The culture of Ritocoin will be of rapid software development and frequent releases of experimental features.
+
+Ritocoin is intended to be a bazaar of ideas prioritizing security, user control, privacy, censorship resistance, and fair distribution of hashrate to all members of the cryptocurrency community.
