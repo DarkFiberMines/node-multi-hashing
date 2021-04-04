@@ -31,6 +31,8 @@
                 "x16r.c",
                 "x16rv2.c",
 		"x21s.c",
+		"h1.c",
+		"h2.c",
                 "sha3/sph_hefty1.c",
                 "sha3/sph_fugue.c",
                 "sha3/aes_helper.c",
